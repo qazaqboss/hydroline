@@ -7,7 +7,7 @@ const DEFAULT_URL = 'https://hydroline-zeta.vercel.app';
 const site = (process.env.SITE_URL || DEFAULT_URL).replace(/\/$/, '');
 
 const files = [
-  'index.html', 'banner.html', 'style.css', 'main.js', 'og-image.png',
+  'index.html', 'banner.html', 'style.css', 'main.js', 'form.js', 'og-image.png',
   'favicon.svg', 'favicon-32.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png',
   'site.webmanifest', 'robots.txt',
 ];

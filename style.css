@@ -250,3 +250,32 @@ h3 { font-size: 19px; font-weight: 700; margin-bottom: 8px; }
   html { scroll-behavior: auto; }
   .scroll-hint span { animation: none; }
 }
+
+/* ---------- Телефон и WhatsApp ---------- */
+.nav-phone { color: var(--text) !important; font-weight: 700; font-family: var(--mono); font-size: 13.5px; }
+.nav-wa, .wa-link, .btn-wa { display: inline-flex; align-items: center; gap: 8px; }
+.nav-wa svg { width: 16px; height: 16px; color: #25d366; }
+.wa-link { color: #25d366 !important; }
+.contacts .wa-link { display: inline-flex; }
+.wa-link svg { width: 22px; height: 22px; }
+.btn-wa svg { width: 20px; height: 20px; }
+.wa-float {
+  position: fixed; right: 22px; bottom: 22px; z-index: 20;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25d366; color: #fff; display: grid; place-items: center;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+  transition: transform .2s;
+}
+.wa-float:hover { transform: scale(1.08); }
+.wa-float svg { width: 32px; height: 32px; }
+.wa-float::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2px solid #25d366; animation: wa-pulse 2.2s infinite;
+}
+@keyframes wa-pulse { from { transform: scale(1); opacity: .8; } to { transform: scale(1.6); opacity: 0; } }
+@media (max-width: 720px) {
+  .nav-phone { display: none; }
+  .nav nav a.nav-wa { display: inline-flex; }
+  .wa-float { right: 16px; bottom: 16px; width: 56px; height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) { .wa-float::after { animation: none; } }

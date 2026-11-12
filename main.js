@@ -536,10 +536,6 @@ window.addEventListener('resize', () => {
 });
 
 // Форма (без сервера — подключите свой обработчик/CRM)
-document.getElementById('leadForm')?.addEventListener('submit', (e) => {
-  e.preventDefault();
-  document.getElementById('formNote').textContent = 'Спасибо! Заявка принята — мы свяжемся с вами.';
-  e.target.reset();
-});
+
 
 requestAnimationFrame(frame);
