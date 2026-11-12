@@ -22,11 +22,13 @@ python3 -m http.server 8080   # затем http://localhost:8080
 ## Деплой на Vercel
 
 1. [vercel.com/new](https://vercel.com/new) → Import Git Repository → выберите `hydroline`.
-2. Framework Preset: **Other**, Build Command — пусто, Output Directory — пусто (корень).
-3. Deploy. `vercel.json` уже настраивает чистые URL, кэш и заголовки безопасности.
+2. Настройки оставьте по умолчанию — `vercel.json` сам задаёт сборку (`node build.mjs` → папка `dist/`).
+3. Deploy.
 
-После деплоя замените `hydroline.vercel.app` в `<head>` файла `index.html` на ваш домен —
-иначе превью ссылки (`og:image`) не подтянется. Проверить превью: [opengraph.xyz](https://www.opengraph.xyz).
+`build.mjs` подставляет реальный адрес сайта в мета-теги превью (`og:image` должен быть
+абсолютной ссылкой). Свой домен можно задать переменной окружения `SITE_URL=https://ваш-домен`
+в Settings → Environment Variables. Проверить превью: [opengraph.xyz](https://www.opengraph.xyz).
+Telegram кэширует превью — после исправления обновите его через бота @WebpageBot.
 
 ## Баннер и иконки
 
