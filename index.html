@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hydroline — сварка геомембраны</title>
+  <meta name="description" content="Hydroline: монтаж и сварка геомембраны HDPE/LLDPE, двойной клиновой и экструзионный шов, контроль герметичности. Полигоны, хвостохранилища, пруды, каналы." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a href="#top" class="logo"><span class="logo-mark"></span>HYDRO<b>LINE</b></a>
+    <nav>
+      <a href="#anatomy">Анатомия</a>
+      <a href="#weld">Сварка</a>
+      <a href="#test">Контроль</a>
+      <a href="#services">Услуги</a>
+      <a href="#contact" class="nav-cta">Заявка</a>
+    </nav>
+  </header>
+
+  <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+
+  <main>
+    <!-- 3D-сцены: каждая секция управляет состоянием модели -->
+    <section class="scene-step hero" id="top" data-step="0">
+      <div class="panel panel-hero">
+        <p class="eyebrow">Монтаж и сварка геомембраны</p>
+        <h1>Анатомия<br /><span class="accent">герметичности</span></h1>
+        <p class="lead">Проектируем, укладываем и сварим противофильтрационный экран, который не пропустит ни капли — с контролем каждого метра шва.</p>
+        <div class="cta-row">
+          <a href="#contact" class="btn btn-primary">Рассчитать объект</a>
+          <a href="#anatomy" class="btn btn-ghost">Смотреть, как устроено ↓</a>
+        </div>
+        <ul class="hero-specs">
+          <li><b>0,5–3,0</b><span>мм толщина HDPE</span></li>
+          <li><b>2×15</b><span>мм двойной шов</span></li>
+          <li><b>100%</b><span>швов на контроле</span></li>
+        </ul>
+      </div>
+      <div class="scroll-hint"><span></span>Прокрутите</div>
+    </section>
+
+    <section class="scene-step" id="anatomy" data-step="1">
+      <div class="panel panel-right">
+        <p class="eyebrow">01 · Анатомия экрана</p>
+        <h2>Пять слоёв, каждый со своей задачей</h2>
+        <p>Геомембрана — сердце системы, но работает она только в связке: подготовленное основание, подстилающий геотекстиль, сварные швы и защитный слой сверху.</p>
+        <ol class="layer-list">
+          <li><i style="--c:#7a5a3a"></i>Уплотнённое основание без камней и корней</li>
+          <li><i style="--c:#d9dde2"></i>Геотекстиль 300–600 г/м² — защита от проколов</li>
+          <li><i style="--c:#1a1d21"></i>Геомембрана HDPE / LLDPE</li>
+          <li><i style="--c:#ff7a1a"></i>Двойной сварной шов с воздушным каналом</li>
+          <li><i style="--c:#a9b4bf"></i>Защитный геотекстиль / пригруз</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="scene-step" id="weld" data-step="2">
+      <div class="panel panel-left">
+        <p class="eyebrow">02 · Сварка</p>
+        <h2>Горячий клин сплавляет полотна в монолит</h2>
+        <p>Автоматический сварочный аппарат движется по нахлёсту 10–15 см. Нагретый клин расплавляет обе поверхности, прижимные ролики формируют два параллельных шва — между ними остаётся воздушный канал для испытаний.</p>
+        <div class="readout">
+          <div><span>Клин</span><b id="roTemp">420 °C</b></div>
+          <div><span>Скорость</span><b>1,5–3 м/мин</b></div>
+          <div><span>Шов пройден</span><b id="roWeld">0%</b></div>
+        </div>
+        <p class="small">Для заплат, примыканий и труб — ручная экструзионная сварка присадочным прутком.</p>
+      </div>
+    </section>
+
+    <section class="scene-step" id="test" data-step="3">
+      <div class="panel panel-right">
+        <p class="eyebrow">03 · Контроль качества</p>
+        <h2>Каждый шов — под давлением</h2>
+        <p>Канал между дорожками шва заглушается и накачивается воздухом. Если давление держится — шов герметичен. Результат фиксируется в журнале с привязкой к номеру шва.</p>
+        <div class="gauge">
+          <svg viewBox="0 0 120 70" aria-hidden="true">
+            <path d="M10 62 A50 50 0 0 1 110 62" class="g-track" />
+            <path d="M10 62 A50 50 0 0 1 110 62" class="g-fill" id="gaugeFill" pathLength="100" />
+          </svg>
+          <div class="g-val"><b id="roPress">0,0</b><span>бар</span></div>
+          <div class="g-status" id="roStatus">Накачка канала…</div>
+        </div>
+        <ul class="checks">
+          <li>Испытание воздушного канала — 2–2,5 бар, 5 минут</li>
+          <li>Вакуумная камера — для экструзионных швов</li>
+          <li>Разрушающие пробы на сдвиг и отслаивание</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="scene-step" id="apps" data-step="4">
+      <div class="panel panel-left">
+        <p class="eyebrow">04 · Где мы работаем</p>
+        <h2>Объекты, где утечка недопустима</h2>
+        <div class="apps-grid">
+          <div>Полигоны ТБО</div>
+          <div>Хвостохранилища</div>
+          <div>Пруды-накопители</div>
+          <div>Каналы и водоёмы</div>
+          <div>Шламонакопители</div>
+          <div>Биогазовые установки</div>
+          <div>Нефтебазы и обвалования</div>
+          <div>Фундаменты и тоннели</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Обычный контент -->
+    <section class="content" id="services">
+      <div class="wrap">
+        <p class="eyebrow">Услуги</p>
+        <h2>От проекта до акта приёмки</h2>
+        <div class="cards">
+          <article class="card">
+            <span class="card-num">01</span>
+            <h3>Сварка геомембраны</h3>
+            <p>Двойной клиновой шов автоматами, экструзионная сварка узлов, примыканий и вводов труб.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">02</span>
+            <h3>Монтаж под ключ</h3>
+            <p>Подготовка основания, раскладка геотекстиля и мембраны, анкерные траншеи, пригруз.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">03</span>
+            <h3>Поставка материалов</h3>
+            <p>Геомембрана HDPE/LLDPE 0,5–3 мм, геотекстиль, бентоматы, геосетки — подбор под задачу.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">04</span>
+            <h3>Контроль и испытания</h3>
+            <p>Испытания швов давлением и вакуумом, пробы на разрыв, исполнительная документация.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">05</span>
+            <h3>Ремонт и диагностика</h3>
+            <p>Поиск утечек на действующих объектах, заплаты, восстановление повреждённых швов.</p>
+          </article>
+          <article class="card">
+            <span class="card-num">06</span>
+            <h3>Проектирование</h3>
+            <p>Расчёт экрана, раскладочные схемы полотен, спецификации и сметы.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="process">
+      <div class="wrap">
+        <p class="eyebrow">Как мы работаем</p>
+        <h2>Пять шагов</h2>
+        <ol class="steps">
+          <li><b>Заявка</b><span>Площадь, назначение объекта, сроки</span></li>
+          <li><b>Выезд и замер</b><span>Оценка основания и узлов</span></li>
+          <li><b>Смета и схема</b><span>Раскладка полотен, материалы</span></li>
+          <li><b>Монтаж и сварка</b><span>С ежедневным контролем швов</span></li>
+          <li><b>Сдача</b><span>Акты испытаний и гарантия</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="content" id="contact">
+      <div class="wrap contact">
+        <div>
+          <p class="eyebrow">Заявка</p>
+          <h2>Расскажите об объекте</h2>
+          <p>Ответим в течение рабочего дня и предложим решение со сметой.</p>
+          <ul class="contacts">
+            <li><span>Телефон</span><a href="tel:+70000000000">+7 (000) 000-00-00</a></li>
+            <li><span>Почта</span><a href="mailto:info@hydroline.example">info@hydroline.example</a></li>
+          </ul>
+        </div>
+        <form class="form" id="leadForm">
+          <label>Имя<input name="name" required autocomplete="name" /></label>
+          <label>Телефон<input name="phone" type="tel" required autocomplete="tel" /></label>
+          <label>Объект
+            <select name="type">
+              <option>Полигон ТБО</option>
+              <option>Хвостохранилище</option>
+              <option>Пруд / водоём</option>
+              <option>Канал</option>
+              <option>Другое</option>
+            </select>
+          </label>
+          <label>Площадь, м²<input name="area" inputmode="numeric" /></label>
+          <label class="full">Комментарий<textarea name="msg" rows="3"></textarea></label>
+          <button class="btn btn-primary full" type="submit">Отправить заявку</button>
+          <p class="form-note full" id="formNote"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <span>© Hydroline — сварка и монтаж геомембраны</span>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </footer>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
