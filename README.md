@@ -1,3 +1,5 @@
+![Hydroline — сварка геомембраны](docs/banner.png)
+
 # Hydroline — сайт услуг по сварке геомембраны
 
 Одностраничный сайт с 3D-анимацией в стиле «анатомического атласа» на Three.js.
@@ -17,7 +19,26 @@
 python3 -m http.server 8080   # затем http://localhost:8080
 ```
 
-Деплой: любой статический хостинг (Vercel, Netlify, GitHub Pages).
+## Деплой на Vercel
+
+1. [vercel.com/new](https://vercel.com/new) → Import Git Repository → выберите `hydroline`.
+2. Framework Preset: **Other**, Build Command — пусто, Output Directory — пусто (корень).
+3. Deploy. `vercel.json` уже настраивает чистые URL, кэш и заголовки безопасности.
+
+После деплоя замените `hydroline.vercel.app` в `<head>` файла `index.html` на ваш домен —
+иначе превью ссылки (`og:image`) не подтянется. Проверить превью: [opengraph.xyz](https://www.opengraph.xyz).
+
+## Баннер и иконки
+
+| Файл | Размер | Для чего |
+|---|---|---|
+| `og-image.png` | 1200×630 | превью ссылки в Telegram, WhatsApp, соцсетях, Vercel |
+| `docs/banner.png` | 2560×1280 | баннер README / GitHub Social preview (Settings → General) |
+| `favicon.svg`, `favicon-32.png` | — | иконка вкладки |
+| `apple-touch-icon.png`, `icon-192/512.png` | — | иконка на телефоне, `site.webmanifest` |
+
+Баннер рендерится из настоящей 3D-сцены: `banner.html` — та же модель в фиксированном
+состоянии (`window.HYDRO_POSTER`). Чтобы перегенерировать: откройте `/banner` в окне 1200×630 и сделайте скриншот.
 
 ## Что поменять под себя
 

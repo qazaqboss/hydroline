@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>Hydroline — баннер</title>
+  <!-- Исходник превью-картинок (og-image.png, docs/banner.png).
+       Откройте в окне 1200×630 (или 1280×640) и сделайте скриншот -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+    body { font-size: calc(100vw / 1200 * 16); }
+    #scene { transition: none; }
+    #labels { z-index: 4; }
+    .poster {
+      position: fixed; inset: 0; z-index: 3; pointer-events: none;
+      padding: 3.6em 4em;
+      display: flex; flex-direction: column; justify-content: space-between;
+      background:
+        radial-gradient(60% 90% at 0% 50%, rgba(10,14,19,.95) 30%, rgba(10,14,19,0) 75%),
+        linear-gradient(0deg, rgba(10,14,19,.6), transparent 25%);
+    }
+    .poster .logo { font-size: 1.15em; }
+    .poster .logo-mark { width: 1.6em; height: 1.6em; }
+    .poster h1 { font-size: 4.7em; margin: 0 0 .28em; line-height: .98; }
+    .poster .eyebrow { font-size: .8em; margin-bottom: 1.1em; }
+    .poster .lead { font-size: 1.25em; max-width: 25em; color: #c5d0da; }
+    .chips { display: flex; gap: .7em; flex-wrap: wrap; }
+    .chips span {
+      font-family: var(--mono); font-size: .85em; padding: .55em 1em; border-radius: 99px;
+      border: 1px solid var(--line); background: rgba(10,14,19,.6); color: #c9d3dc;
+    }
+    .chips span:first-child { border-color: rgba(255,122,26,.6); color: var(--orange); }
+    .foot { display: flex; justify-content: space-between; align-items: end; }
+    .url { font-family: var(--mono); font-size: .9em; color: var(--muted); }
+    .tag b { font-size: .8em; }
+    .tag small { font-size: .65em; display: block !important; }
+    .tag .tag-line { width: 2.2em !important; }
+  </style>
+  <script>
+    // Фиксированное состояние сцены: слои раздвинуты, аппарат варит шов
+    window.HYDRO_POSTER = {
+      cam: [6.4, 3.5, 7.0], tgt: [0.6, 0.5, 0],
+      explode: 0.55, cover: 0, welder: 1, weld: 0.55, test: 0, spin: 0, dim: 0, shift: 0.2,
+      labels: ['Геомембрана HDPE', 'Горячий клин', 'Подстилающий геотекстиль'],
+    };
+  </script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+  <div id="labels" aria-hidden="true"></div>
+
+  <div class="poster">
+    <div class="logo"><span class="logo-mark"></span>HYDRO<b>LINE</b></div>
+    <div>
+      <p class="eyebrow">Монтаж и сварка геомембраны</p>
+      <h1>Анатомия<br /><span class="accent">герметичности</span></h1>
+      <p class="lead">Двойной клиновой шов, экструзионная сварка и контроль каждого метра — для полигонов, хвостохранилищ, прудов и каналов.</p>
+    </div>
+    <div class="foot">
+      <div class="chips">
+        <span>HDPE 0,5–3,0 мм</span>
+        <span>2×15 мм шов</span>
+        <span>100% швов на контроле</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>

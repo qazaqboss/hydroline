@@ -401,6 +401,7 @@ const progressBar = document.getElementById('progressBar');
 /* ---------- Цикл ---------- */
 const clock = new THREE.Clock();
 const lookAt = new THREE.Vector3();
+const POSTER = window.HYDRO_POSTER || null;
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 let prevWelderX = welder.position.x;
 
@@ -408,7 +409,9 @@ function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const time = clock.elapsedTime;
 
-  sampleKeys(scrollStep());
+  // Режим постера (banner.html): фиксированное состояние сцены вместо прокрутки
+  if (POSTER) { for (const k of Object.keys(K[0])) target[k] = Array.isArray(POSTER[k]) ? [...POSTER[k]] : POSTER[k]; }
+  else sampleKeys(scrollStep());
   const k = reduceMotion ? 1 : 1 - Math.pow(0.0015, dt); // плавное догоняние
   for (const key of Object.keys(target)) {
     if (Array.isArray(target[key])) state[key] = state[key].map((v, j) => lerp(v, target[key][j], k));
@@ -498,7 +501,7 @@ function frame() {
   // HTML-подписи
   const wPx = window.innerWidth, hPx = window.innerHeight;
   for (const d of labelDefs) {
-    const o = clamp(d.show(state));
+    const o = POSTER?.labels ? (POSTER.labels.includes(d.t) ? 1 : 0) : clamp(d.show(state));
     if (o < 0.01) { d.el.style.opacity = 0; continue; }
     const p = d.p().project(camera);
     if (p.z > 1) { d.el.style.opacity = 0; continue; }
@@ -508,6 +511,7 @@ function frame() {
   }
 
   // Показания в панелях
+  if (roWeld) {
   roWeld.textContent = `${Math.round(state.weld * 100)}%`;
   roTemp.textContent = `${Math.round(410 + Math.sin(time * 2) * 6 * welding)} °C`;
   const press = 2.5 * smooth(clamp(state.test / 0.85));
@@ -519,6 +523,7 @@ function frame() {
 
   const max = document.documentElement.scrollHeight - window.innerHeight;
   progressBar.style.width = `${(window.scrollY / Math.max(max, 1)) * 100}%`;
+  }
 
   renderer.render(scene, camera);
   requestAnimationFrame(frame);
@@ -531,7 +536,7 @@ window.addEventListener('resize', () => {
 });
 
 // Форма (без сервера — подключите свой обработчик/CRM)
-document.getElementById('leadForm').addEventListener('submit', (e) => {
+document.getElementById('leadForm')?.addEventListener('submit', (e) => {
   e.preventDefault();
   document.getElementById('formNote').textContent = 'Спасибо! Заявка принята — мы свяжемся с вами.';
   e.target.reset();
