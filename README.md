@@ -26,7 +26,7 @@ python3 -m http.server 8080   # затем http://localhost:8080
 3. Deploy.
 
 `build.mjs` подставляет реальный адрес сайта в мета-теги превью (`og:image` должен быть
-абсолютной ссылкой). Свой домен можно задать переменной окружения `SITE_URL=https://ваш-домен`
+абсолютной ссылкой). Свой домен можно задать переменной окружения `SITE_URL=https://ваш-домен` (по умолчанию — hydroline-zeta.vercel.app)
 в Settings → Environment Variables. Проверить превью: [opengraph.xyz](https://www.opengraph.xyz).
 Telegram кэширует превью — после исправления обновите его через бота @WebpageBot.
 
